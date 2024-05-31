@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Project02</title>
+    <meta charset="utf-8" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+    <!-- Latest compiled and minified Bootstrap 4.6 CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+
+    <!-- ChartJS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- CSS script -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- JavaScript -->
+    <script type="module" src="main.js"></script>
+
+    <!-- Latest Font-Awesome CDN -->
+    <script
+      src="https://kit.fontawesome.com/8b7ad911c7.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="bg-color-light-light">
+    <!-- Header -->
+    <header>
+      <div class="d-flex jusify-content-between align-items-center">
+        <div class="main-logo w-50">
+          <a href="#landingPage">
+            <img src="./images/Logo.png" id="mainLogo" alt="main-logo" />
+          </a>
+        </div>
+        <h2 class="w-100 font-color-dark-brown reenie-font pt-4">
+          Street ARTists
+        </h2>
+        <div class="auction-icon mt-2 p-3 w-25 text-right">
+          <a href="#auctionPage"
+            ><img
+              src="./images/auction-icon.png"
+              id="auctionIcon"
+              alt="auction-icon"
+          /></a>
+        </div>
+        <div class="navIcon pt-3 pr-3">
+          <i class="fa-sharp fa-solid fa-bars font-color-dark-brown"></i>
+        </div>
+      </div>
+    </header>
+    <!-- Navbar -->
+    <nav>
+      <div class="navMenu text-center">
+        <ul class="list-unstyled font-color-light roboto-font py-2 m-2">
+          <li class="pb-1">
+            <a
+              href="#artistsHomePage"
+              class="text-decoration-none font-color-light"
+              >Home</a
+            >
+          </li>
+          <li class="pb-1">
+            <a
+              href="#artistsItemsPage"
+              class="text-decoration-none font-color-light"
+              >Items</a
+            >
+          </li>
+          <li>
+            <a href="#auctionPage" class="text-decoration-none font-color-light"
+              >Auction</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Landing Page -->
+    <section class="page" id="landingPage">
+      <div class="d-flex jusify-content-center flex-column">
+        <img src="./images/Logo.png" alt="main-logo" class="mx-auto my-5" />
+        <div class="login-option mx-auto">
+          <div
+            class="artist-div w-100 h-100 bg-color-light pt-5 pr-2"
+            id="artistOption"
+          >
+            <h2 class="reenie-font font-color-dark-brown text-center">
+              Join as artist
+            </h2>
+            <select
+              name="artist"
+              class="font-color-dark-brown"
+              id="artistsSelect"
+            >
+              <option value="Choose" disabled selected>Choose</option>
+            </select>
+          </div>
+          <div class="visitor-div w-100 h-100 bg-color-dark" id="visitorOption">
+            <h2 class="reenie-font text-center font-color-light">
+              Join as visitor
+            </h2>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Artist - Home Page -->
+    <section class="page" id="artistsHomePage">
+      <div class="container-fluid bg-color-light mt-5 pt-5 px-0">
+        <div class="row d-flex justify-content-center mt-3">
+          <div class="col">
+            <div class="row align-items-center text-center">
+              <div class="col-6 pr-2 p-0">
+                <div class="bg-color-dark font-color-light">
+                  <p class="text-capitalize pt-2 m-0">Total items sold</p>
+                  <h1 class="pb-3 m-0">
+                    <span id="soldItems"></span>/<span id="totalItems"></span>
+                  </h1>
+                </div>
+              </div>
+              <div class="col-6 pl-2 p-0">
+                <div class="bg-color-dark font-color-light">
+                  <p class="text-capitalize pt-2 m-0">Total income</p>
+                  <h1 class="pb-3 m-0">$<span id="totalIncome"></span></h1>
+                </div>
+              </div>
+            </div>
+            <div class="row my-3">
+              <div
+                class="col text-center bg-auctioning font-color-light auction-info"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container my-4">
+        <h4 class="font-color-dark-brown font-weight-normal">
+          Display my income for last
+        </h4>
+        <div class="chart-buttons d-flex justify-content-between my-2">
+          <button id="last7">7 days</button>
+          <button id="last14">14 days</button>
+          <button id="last30">30 days</button>
+        </div>
+        <canvas class="w-100 mt-5" id="myChart"></canvas>
+      </div>
+    </section>
+
+    <!-- Artist - Items Page -->
+    <section class="page bg-color-light" id="artistsItemsPage">
+      <div class="mt-5 pt-5">
+        <div class="mt-3 mb-4 bg-color-light-light">
+          <div class="newItem bg-body-color-light p-3">
+            <div class="newItemInner p-3 text-center">
+              <p class="font-color-dark-brown m-0 py-4">+ Add new item</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="artist-card-container"></div>
+
+      <!-- Artist - New/Edit Item -->
+
+      <div class="filter-panel bg-color-dark font-color-light" id="filterPanel">
+        <div class="container-fluid p-0">
+          <div
+            class="row d-flex justify-content-between align-items-center mt-3"
+          >
+            <div class="col p-0">
+              <h4>Add new Item</h4>
+            </div>
+            <div class="col d-flex justify-content-end p-0">
+              <label for="isPublishedCheckbox" class="mb-0">Is Published</label>
+              <input
+                type="checkbox"
+                name="isPublished"
+                id="isPublishedCheckbox"
+                checked
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col p-0">
+              <h5 class="font-weight-light m-0">Title</h5>
+              <input
+                type="text"
+                class="input-edit font-color-light w-100"
+                id="title-input"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+
+          <div class="row mb-5">
+            <div class="col mb-4 p-0">
+              <h5 class="font-weight-light mt-4 mb-0">Description</h5>
+              <textarea
+                class="input-textarea font-color-light"
+                id="description-input"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6 pr-3 p-0">
+              <h5 class="font-weight-light text-capitalize m-0">Type</h5>
+              <select
+                name="type"
+                id="type-input-select"
+                class="w-100 text-left m-0"
+              >
+                <option value="" disabled selected>Choose</option>
+              </select>
+            </div>
+            <div class="col-6 pl-3 p-0">
+              <h5 class="font-weight-light text-capitalize m-0">Price</h5>
+              <input
+                type="number"
+                class="input-edit font-color-light w-100"
+                id="price-input"
+              />
+            </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="col p-0">
+              <h5 class="font-weight-light m-0">Image URL</h5>
+              <input
+                type="text"
+                class="input-edit font-color-light w-100"
+                id="image-url-input"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+          <p class="text-center my-1">or</p>
+          <div class="camera-icon-container">
+            <i class="fa-solid fa-camera camera-icon" id="cameraBtn"></i>
+            <p>Take a snapshot</p>
+            <img
+              class="captured-img"
+              id="displayCapturedImage"
+              style="display: none"
+            />
+          </div>
+
+          <div class="row mt-3">
+            <div class="col pl-0">
+              <button type="submit" class="addNewItemBtn font-weight-bold">
+                Add New Item
+              </button>
+              <button type="submit" class="saveItemBtn d-none font-weight-bold">
+                Save
+              </button>
+            </div>
+            <div class="col pr-0">
+              <div class="cancelBtn text-center font-weight-bold">Cancel</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="camera-container bg-color-dark">
+        <video class="camera-canvas my-3" id="liveStream" autoplay></video>
+        <div class="d-flex justify-content-center align-items-center my-3">
+          <i class="fa-solid fa-camera camera-icon" id="captureImageBtn"></i>
+        </div>
+        <canvas class="canvas-capture" id="captureCanvas"></canvas>
+      </div>
+    </section>
+
+    <!-- Visitor - Home Page -->
+    <section class="page" id="visitorHomePage">
+      <div class="bricks-banner">
+        <div class="row justify-content-between align-items-center px-3">
+          <div class="col-8 pr-0">
+            <h2 class="font-color-dark-brown">Looking for masterpiece?</h2>
+          </div>
+          <div class="col-4 p-0">
+            <a href="#visitorListing">
+              <button type="button" class="btn bg-color-dark font-color-light">
+                Find one now!
+              </button></a
+            >
+          </div>
+        </div>
+      </div>
+      <!-- Slider -->
+      <div class="gallery-content py-3 bg-color-light">
+        <div class="slide-track upper-slide">
+          <div class="slide-img">
+            <img src="./images/gallery/image4.jpg" alt="Artwork 4" />
+          </div>
+          <div class="slide-img">
+            <img src="./images/gallery/image2.jpg" alt="Artwork 2" />
+          </div>
+          <div class="slide-img">
+            <img src="./images/gallery/image3.jpg" alt="Artwork 3" />
+          </div>
+          <div class="slide-img">
+            <img src="./images/gallery/image1.jpg" alt="Artwork 1" />
+          </div>
+          <div class="slide-img">
+            <img src="./images/gallery/image4.jpg" alt="Artwork 4" />
+          </div>
+          <div class="slide-img">
+            <img src="./images/gallery/image2.jpg" alt="Artwork 2" />
+          </div>
+          <div class="slide-img">
+            <img src="./images/gallery/image3.jpg" alt="Artwork 3" />
+          </div>
+          <div class="slide-img">
+            <img src="./images/gallery/image1.jpg" alt="Artwork 1" />
+          </div>
+          <div class="slide-img">
+            <img src="./images/gallery/image4.jpg" alt="Artwork 4" />
+          </div>
+          <div class="slide-img">
+            <img src="./images/gallery/image2.jpg" alt="Artwork 2" />
+          </div>
+          <div class="slide-img">
+            <img src="./images/gallery/image3.jpg" alt="Artwork 3" />
+          </div>
+          <div class="slide-img">
+            <img src="./images/gallery/image1.jpg" alt="Artwork 1" />
+          </div>
+        </div>
+
+        <div class="slide-track lower-slide pt-2">
+          <div class="slide-img">
+            <img src="./images/gallery/image2.jpg" alt="Artwork 2" />
+          </div>
+          <div class="slide-img">
+            <img src="./images/gallery/image1.jpg" alt="Artwork 1" />
+          </div>
+          <div class="slide-img">
+            <img src="./images/gallery/image4.jpg" alt="Artwork 4" />
+          </div>
+          <div class="slide-img">
+            <img src="./images/gallery/image3.jpg" alt="Artwork 3" />
+          </div>
+          <div class="slide-img">
+            <img src="./images/gallery/image2.jpg" alt="Artwork 2" />
+          </div>
+          <div class="slide-img">
+            <img src="./images/gallery/image1.jpg" alt="Artwork 1" />
+          </div>
+          <div class="slide-img">
+            <img src="./images/gallery/image4.jpg" alt="Artwork 4" />
+          </div>
+          <div class="slide-img">
+            <img src="./images/gallery/image3.jpg" alt="Artwork 3" />
+          </div>
+          <div class="slide-img">
+            <img src="./images/gallery/image2.jpg" alt="Artwork 2" />
+          </div>
+          <div class="slide-img">
+            <img src="./images/gallery/image1.jpg" alt="Artwork 1" />
+          </div>
+          <div class="slide-img">
+            <img src="./images/gallery/image4.jpg" alt="Artwork 4" />
+          </div>
+          <div class="slide-img">
+            <img src="./images/gallery/image3.jpg" alt="Artwork 3" />
+          </div>
+        </div>
+      </div>
+      <!-- Carousel -->
+      <div
+        id="carouselExampleFade"
+        class="carousel w-100 slide my-3"
+        data-ride="carousel"
+      >
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row px-4">
+              <div
+                class="col-6 p-4 d-flex justify-content-center align-items-center border-right"
+              >
+                <div class="box p-1 d-flex flex-column justify-content-center">
+                  <div class="circle mx-auto">.</div>
+                  <p class="card-text text-center">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Aperiam officia impedit.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="col-6 d-flex justify-content-center align-items-center"
+              >
+                <p class="card-text text-center font-color-dark-brown">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
+                  maiores rem necessitatibus voluptatem ipsum quisquam modi
+                  voluptas suscipit, error amet.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row px-4">
+              <div
+                class="col-6 p-4 d-flex justify-content-center align-items-center border-right"
+              >
+                <div class="box p-1 d-flex flex-column justify-content-center">
+                  <div class="circle mx-auto">.</div>
+                  <p class="card-text text-center">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Aperiam officia impedit.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="col-6 d-flex justify-content-center align-items-center"
+              >
+                <p class="card-text text-center font-color-dark-brown">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
+                  maiores rem necessitatibus voluptatem ipsum quisquam modi
+                  voluptas suscipit, error amet.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row px-4">
+              <div
+                class="col-6 p-4 d-flex justify-content-center align-items-center border-right"
+              >
+                <div class="box p-1 d-flex flex-column justify-content-center">
+                  <div class="circle mx-auto">.</div>
+                  <p class="card-text text-center">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Aperiam officia impedit.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="col-6 d-flex justify-content-center align-items-center"
+              >
+                <p class="card-text text-center font-color-dark-brown">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
+                  maiores rem necessitatibus voluptatem ipsum quisquam modi
+                  voluptas suscipit, error amet.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a
+          class="carousel-control-prev"
+          role="button"
+          data-target="#carouselExampleFade"
+          data-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a
+          class="carousel-control-next"
+          role="button"
+          data-target="#carouselExampleFade"
+          data-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Visitor - Listing Page -->
+    <section class="page bg-color-light" id="visitorListing">
+      <div class="mt-5 pt-4" id="visitorListingCardContainer"></div>
+      <div class="filter-icon">
+        <img src="./images/filter-icon.png" id="filterIcon" alt="filter" />
+      </div>
+
+      <!-- Filter-panel -->
+      <div
+        class="filter-panel bg-color-dark font-color-light"
+        id="filterPanell"
+      >
+        <div class="close-filter-btn" id="closeFilterBtn">
+          <img src="./images/close-button.png" alt="close-button" />
+        </div>
+
+        <h2 class="pb-3">Filter by</h2>
+
+        <h5 class="font-weight-light text-capitalize my-2">By item title</h5>
+        <input
+          type="text"
+          class="input-edit font-color-light mt-3"
+          placeholder="Title"
+          id="item-input"
+        />
+
+        <hr />
+
+        <h5 class="font-weight-light text-capitalize my-2">By Artist</h5>
+        <select name="artist" id="artist-input-select">
+          <option value="" disabled selected>Choose</option>
+        </select>
+
+        <hr />
+
+        <h5 class="font-weight-light text-capitalize my-2">By Price</h5>
+        <div class="row">
+          <div class="col-6 min d-flex align-items-center pl-0 mt-3">
+            <label for="min" class="m-0 mr-2">Min:</label>
+            <input
+              type="number"
+              class="input-edit font-color-light"
+              id="min-price-input"
+              placeholder="Min price"
+            />
+          </div>
+
+          <div class="col-6 max d-flex align-items-center pl-0 mt-3">
+            <label for="max" class="m-0 mr-2">Max:</label>
+            <input
+              type="number"
+              class="input-edit font-color-light"
+              id="max-price-input"
+              placeholder="Max price"
+            />
+          </div>
+        </div>
+
+        <hr />
+
+        <h5 class="font-weight-light text-capitalize my-2">By Type</h5>
+        <select name="type" id="type-input-selectt">
+          <option value="" disabled selected>Choose</option>
+        </select>
+
+        <hr class="mb-0" />
+
+        <div type="submit" class="apply-filters-btn">
+          <img src="./images/check-icon.png" alt="Apply" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Auction Page -->
+    <section class="page pt-5" id="auctionPage">
+      <div
+        class="noAuction text-center font-color-dark-brown roboto-font mt-5 d-none"
+      >
+        <h3>No active auction!</h3>
+      </div>
+      <div class="inner auctionInner text-center mt-3 font-color-dark-brown">
+        <div class="auctionContent pt-3">
+          <img class="auctionImage mt-2" />
+          <div class="d-flex justify-content-between align-items-center">
+            <h4 class="auctionArtistName reenie-font text-start p-2"></h4>
+            <h4 class="price-bg font-color-dark m-2 p-1">
+              $<span class="auctionStartingPrice"></span>
+            </h4>
+          </div>
+          <div class="bg-color-dark font-color-light shadow-sm">
+            <h6 class="auctionTitle pt-2"></h6>
+            <p class="auctionDescription"></p>
+          </div>
+
+          <form class="yourBid mt-5">
+            <p class="h5 text-center mb-1 ml-2">Enter your bid amount ($):</p>
+            <div id="time" class="timer text-center">
+              <p class="h6 mb-1">Time remaining:</p>
+              <span id="timeRemaining">02:00</span>
+            </div>
+            <h4>
+              $<input type="number" class="bidInput font-color-dark ml-1" />
+            </h4>
+            <button type="submit" class="bidBtn mt-2">Place Bid</button>
+          </form>
+
+          <div class="d-flex justify-content-between px-4 mt-4">
+            <ul class="list-unstyled yourBids">
+              <li class="h4 mb-2">Your Bids</li>
+            </ul>
+            <ul class="list-unstyled otherBids">
+              <li class="h4 mb-2">Other Bids</li>
+            </ul>
+          </div>
+          <div class="lists">
+            <ul
+              class="list-unstyled d-flex justify-content-between align-items-center"
+            >
+              <li class="h6 ml-5" id="biddings"></li>
+              <li class="h6 mr-5" id="otherBiddings"></li>
+            </ul>
+          </div>
+        </div>
+        <div class="liveUpdates">
+          <ul id="liveBids"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- jQuery library -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="ha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Latest Compiled Bootstrap 4.6 JavaScript -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+      integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

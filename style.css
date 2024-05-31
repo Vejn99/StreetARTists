@@ -1,0 +1,568 @@
+@import url("https://fonts.googleapis.com/css2?family=Reenie+Beanie&family=Roboto:wght@100;300;400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+ul,
+li {
+  margin-top: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Fonts */
+
+.reenie-font {
+  font-family: "Reenie Beanie", cursive;
+}
+
+.roboto-font {
+  font-family: "Roboto", sans-serif;
+}
+
+/* Colors */
+
+.bg-color-light-light {
+  background-color: #fcebd5;
+}
+
+.bg-color-light {
+  background-color: #edd5bb;
+}
+
+.bg-color-dark {
+  background-color: #a16a5e;
+}
+
+.bg-auctioning {
+  background-color: #d44c2e;
+}
+
+.font-color-dark-brown {
+  color: #a16a5e;
+}
+
+.font-color-light {
+  color: #fcebd5;
+}
+
+/* Header */
+header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  margin-top: -12px;
+  background-color: #fcebd5;
+  box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.25);
+}
+.main-logo {
+  z-index: 2;
+  cursor: pointer;
+  margin-bottom: -35px;
+}
+#auctionIcon {
+  cursor: pointer;
+}
+
+/* Navigation */
+.navIcon {
+  display: block;
+  font-size: 30px;
+  cursor: pointer;
+}
+.navMenu {
+  width: 100%;
+  position: fixed;
+  z-index: 550;
+  top: -110px;
+  background-color: #a16a5e;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.25);
+  transition: top 1s ease-in-out;
+}
+
+.hamburger-active {
+  top: 80px;
+}
+.navMenu ul li a {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 50px;
+  letter-spacing: 0.1em;
+}
+
+.navMenu ul li a:hover {
+  color: white;
+}
+
+/* Landing-page */
+
+.login-option {
+  width: 260px;
+  height: 392.5px;
+}
+.artist-div {
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 0 30%);
+}
+
+.visitor-div {
+  margin-top: -400px;
+  clip-path: polygon(0 30%, 100% 70%, 100% 100%, 0% 100%);
+  cursor: pointer;
+}
+
+.artist-div:hover,
+.visitor-div:hover {
+  transform: scale(1.05);
+}
+
+.visitor-div h2 {
+  padding-top: 300px;
+}
+
+.login-option .artist-div #artistsSelect {
+  width: 50%;
+  background-color: transparent;
+  padding: 4px;
+  border: 1px solid #a16a5e;
+  border-radius: 3px;
+  float: right;
+  cursor: pointer;
+}
+
+/* Visitor home-page */
+
+.bricks-banner {
+  min-width: 100%;
+  background-image: url("./images/Bricks.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  padding-top: 100px;
+  padding-bottom: 40px;
+  background-color: #f5e3cb;
+}
+
+/* Slider */
+/* General styling for the carousel container */
+.gallery-content {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  min-width: 100%;
+  margin: auto;
+}
+
+.slide-track {
+  display: flex;
+  animation: scroll linear infinite;
+  width: calc(250px * 12);
+}
+
+.upper-slide {
+  animation-duration: 20s;
+}
+
+.lower-slide {
+  animation-duration: 25s;
+}
+
+.slide-track:hover {
+  animation-play-state: paused;
+}
+
+/* Infinite scroll keyframes */
+@keyframes scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    /* Move left by the total width of the original image set */
+    transform: translate3d(
+      calc(-250px * 4),
+      0,
+      0
+    ); /* Adjust for the number of original images */
+  }
+}
+
+.slide-img {
+  flex: 0 0 250px; /* Width of each image container */
+  height: 200px;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.slide-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+  box-shadow:
+    /* Right side shadow */ 6px 3px 6px rgba(0, 0, 0, 0.4),
+    /* Left top shadow */ -5px 0px 6px rgba(0, 0, 0, 0.4);
+}
+
+.slide-img img:hover {
+  transform: scale(1.05);
+}
+
+.carousel,
+.gallery-content {
+  overflow: hidden;
+}
+/* Carousel */
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  display: flex;
+  width: 13px;
+  height: 52px;
+}
+
+.carousel-control-prev-icon {
+  background-image: url("./images/Vector\ 1.png");
+  margin-right: 30px;
+}
+
+.carousel-control-next-icon {
+  background-image: url("./images/Vector\ 2.png");
+  margin-left: 30px;
+}
+
+.carousel-control-prev-icon:after,
+.carousel-control-next-icon:after {
+  display: none;
+}
+.border-right {
+  border-right: 1px solid #a16a5e !important;
+}
+
+.box {
+  background-color: #e09686;
+  color: white;
+  overflow: visible;
+}
+
+.card-text {
+  font-size: 10px;
+}
+
+.circle {
+  width: 50px;
+  height: 50px;
+  background-image: url(./images/Ellipse\ 1.png);
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  margin-top: -20px;
+}
+
+/* Listing-page */
+.price-tag {
+  padding: 3px 8px;
+  border-radius: 2px;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
+}
+
+.price-tag-dark {
+  color: #fcebd5;
+  background-color: #a16a5e;
+}
+
+.price-tag-light {
+  color: #a16a5e;
+  background-color: #fcebd5;
+}
+
+/* Filter-panel */
+
+.filter-panel {
+  position: fixed;
+  top: 70px;
+  right: -100%; /* Start off screen */
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+  transition: right 0.3s;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.filter-panel.active {
+  right: 0;
+}
+
+.filter-panel hr {
+  border: none;
+  height: 2px; /* Adjust this value to make it thicker */
+  background-color: #edd5bb;
+  width: 100%;
+  margin: 35px auto;
+}
+
+.filter-panel .input-edit {
+  width: 97px;
+  height: 27px;
+  display: block;
+  flex-shrink: 0;
+  background-color: transparent;
+  border: 1px solid #edd5bb;
+  border-radius: 3px;
+  padding-left: 5px;
+}
+
+.filter-panel .input-edit::placeholder {
+  color: #edd5bb;
+}
+
+.filter-panel select {
+  width: 97px;
+  height: 27px;
+  text-align: center;
+  flex-shrink: 0;
+  color: #edd5bb;
+  background-color: transparent;
+  border: 1px solid #edd5bb;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.close-filter-btn {
+  position: absolute;
+  top: 3%;
+  right: 3%;
+  cursor: pointer;
+}
+
+.apply-filters-btn {
+  width: 65px;
+  height: 67px;
+  flex-shrink: 0;
+  position: absolute;
+  bottom: 9%;
+  right: 3%;
+  cursor: pointer;
+  z-index: 50;
+}
+
+.filter-icon {
+  width: 65px;
+  height: 67px;
+  flex-shrink: 0;
+  position: fixed;
+  bottom: 0;
+  right: 3%;
+  z-index: 20;
+  cursor: pointer;
+}
+
+/* Artist home-page */
+.chart-buttons button {
+  border: none;
+  border-radius: 2px;
+  font-size: 1rem;
+  color: #fcebd5;
+  background-color: #a16a5e;
+  padding: 3px 26px;
+}
+
+.chart-buttons button.active {
+  background-color: #d54c2e;
+}
+
+/* Artist items-page */
+.newItem {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.newItemInner {
+  cursor: pointer;
+  border: 2px dashed #a26a5e;
+}
+
+.items-buttons button {
+  font-weight: 600;
+  border: none;
+  padding: 3px 10px;
+  color: #f8f8f8;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 2px;
+}
+
+.items-buttons button.auctionBtn {
+  background-color: #1b59ac;
+}
+.items-buttons button.removeBtn {
+  color: #fcebd5;
+  background-color: #d44c2e;
+}
+.items-buttons button.editBtn {
+  color: #a16a5e;
+  background-color: #fcebd5;
+}
+
+.unpublish-btn {
+  color: #f8f8f8;
+  background-color: #1bac6f;
+}
+
+.publish-btn {
+  color: black;
+  background-color: #e5e5e5;
+}
+
+/* Artist - New/Edit Item */
+.validation-messages {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.input-textarea {
+  width: 100%;
+  height: 100%;
+  display: block;
+  flex-shrink: 0;
+  background-color: transparent;
+  border: 1px solid #edd5bb;
+  border-radius: 3px;
+  padding-left: 5px;
+}
+
+.camera-icon-container {
+  position: relative;
+  border: 2px dashed #d3b8ae;
+  border-radius: 4px;
+  text-align: center;
+  padding: 70px 0px;
+  margin-bottom: 15px;
+}
+
+.camera-icon-container .captured-img {
+  display: block; /* changed from none to block to make it visible */
+  width: 100%; /* ensures image does not overflow its container */
+  height: 100%; /* maintains the aspect ratio */
+  position: absolute; /* positions the image absolutely within the relative container */
+  top: 50%; /* centers the image vertically */
+  left: 50%; /* centers the image horizontally */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* adjusts the positioning to truly center the image */
+}
+
+.camera-icon {
+  color: #fcebd5;
+  font-size: 50px;
+  margin-bottom: 5px;
+}
+
+.addNewItemBtn,
+.cancelBtn,
+.saveItemBtn {
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+  padding: 5px 0;
+}
+
+.addNewItemBtn,
+.saveItemBtn {
+  background-color: #d54c2e;
+  color: #fcebd5;
+}
+
+.cancelBtn {
+  background-color: #e5e5e5;
+  color: #5a5a5a;
+}
+
+input[type="checkbox"] {
+  margin-left: 7px;
+  accent-color: #a16a5e;
+}
+
+/* Camera */
+.camera-container {
+  position: fixed;
+  top: 70px;
+  right: -100%; /* Start off screen */
+  width: 100%;
+  height: 100%;
+  z-index: 610;
+  transition: right 0.3s;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.camera-container.active {
+  right: 0;
+}
+
+.canvas-capture,
+.camera-canvas {
+  width: 100%;
+  height: 295px;
+  background-color: transparent;
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.25);
+  border-radius: 2px;
+}
+
+.captured-img {
+  height: 400px;
+}
+
+/* Auction-page */
+
+.bidBtn {
+  color: #edd5bb;
+  background-color: #a16a5e;
+  border: none;
+  border-radius: 2px;
+  padding: 7px 20px;
+}
+
+.bidInput {
+  width: 50%;
+  height: 27px;
+  flex-shrink: 0;
+  background-color: transparent;
+  border: 2px solid #edd5bb;
+  border-radius: 3px;
+  padding-left: 5px;
+  margin: auto;
+}
+
+.bidInput::placeholder {
+  color: #edd5bb;
+}
+
+/* alert popup */
+
+.popup-alert {
+}
