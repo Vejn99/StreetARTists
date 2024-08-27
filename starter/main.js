@@ -16,7 +16,7 @@ const elements = {
   navMenu: document.querySelector(".navMenu"),
 };
 
-// Page header configurations
+// Page header
 const headerConfigs = {
   "#landingPage": {
     logo: false,
